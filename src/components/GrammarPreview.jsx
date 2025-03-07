@@ -17,7 +17,7 @@ export function GrammarPreview({ value, mistakes }) {
       const after = result.slice(mistake.endIndex + 1);
       result =
         before +
-        `<span class="border-b-2 border-b-red-400">${highlighted}</span>` +
+        `<span class="border-b-2 border-b-red-400 text-red-400">${highlighted}</span>` +
         after;
     }
     return result;
