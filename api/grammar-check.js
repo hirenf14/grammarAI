@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import jwt from "jsonwebtoken";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -65,6 +66,7 @@ export default async function handler(request, response) {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET);
   } catch (error) {
+    console.log(error);
     return response.status(401).json({
       message: "Unauthorized",
     });

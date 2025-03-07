@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuthStore } from "../store/auth";
+import { redirect, useNavigate } from "react-router-dom";
 
 export const useGrammar = () => {
   const [text, setText] = useState("");
+  const navigate = useNavigate();
   const [mistakes, setMistakes] = useState([]);
   const [loading, setLoading] = useState(false);
-  const token = useAuthStore((s) => s.token);
+  const { token, logout } = useAuthStore();
   const checkGrammar = useCallback(
     async (body, signal) => {
       try {
@@ -22,6 +24,12 @@ export const useGrammar = () => {
         if (response.status === 200) {
           const result = await response.json();
           setMistakes(result.mistakes ?? []);
+        }
+        if (response.status === 401) {
+          setMistakes([]);
+          logout();
+          navigate("/login");
+          return;
         }
         // TODO: Error handling for rate limit
       } finally {
