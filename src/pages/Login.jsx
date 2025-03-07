@@ -32,7 +32,7 @@ export default function Login() {
           <input
             {...register("email", { required: true })}
             type="email"
-            placeholder="Email"
+            placeholder="test@gmail.com"
             className="w-full rounded border border-gray-300 p-2"
           />
           {errors.email && (
@@ -44,7 +44,7 @@ export default function Login() {
           <input
             {...register("password", { required: true })}
             type="password"
-            placeholder="Password"
+            placeholder="Test@123"
             className="w-full rounded border border-gray-300 p-2"
           />
           {errors.password && (
