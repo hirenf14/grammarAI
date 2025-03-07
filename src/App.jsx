@@ -3,7 +3,7 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
-import Root from "./root";
+import Root from "./Root";
 import Loader from "./components/Loader";
 import ErrorView from "./components/ErrorView";
 import { lazy } from "react";
